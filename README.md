@@ -27,10 +27,9 @@ python main.py controller main --debug
 python main.py controller main --no-debug
 ```
 
-```bash
+
 📦 專案流程概觀
-
-
+```bash
 1. 讀取系統設定（.env）
 2. 讀取名稱設定檔（.csv / .env / .json）
 3. 組合 Context（COMMON + INDEX + API）
@@ -38,12 +37,15 @@ python main.py controller main --no-debug
 5. 任務模組回傳非 SUCCESS (ResultCode != 0) 時會立即中止流程。
 ```
 
+
+設定檔說明
 ```bash
-設定檔說明：
 workspace/profiles/examples/profile_spec.yml
+```
+
+
 🧩 錯誤碼比對方式
-
-
+```bash
 錯誤碼定義於：
 workspace/config/error_code.py
 
@@ -58,9 +60,9 @@ task_email_invalid_format = 2031  # 信箱格式錯誤
 workspace/profiles/examples/profile_spec.yml
 ```
 
-```bash
-🧠 偵錯與除錯建議
 
+🧠 偵錯與除錯建議
+```bash
 想看完整流程輸出：使用 --debug
 只想驗證設定檔格式：使用 --step 1
 執行時出現錯誤碼：到 workspace/config/error_code.py 搜尋代碼
@@ -79,9 +81,9 @@ pytest -m "unit and task and loader" -v
 覆蓋率：100% 錯誤碼命中率
 ```
 
-```bash
-🧱 專案結構
 
+🧱 專案結構
+```bash
 workspace/
  ├─ tools/loader/
  │   └─ loader.py
@@ -104,9 +106,9 @@ workspace/
          └─ profile_spec.yml     （設定檔規範說明文件）
 ```
 
-```bash
-⚠️ 注意事項
 
+⚠️ 注意事項
+```bash
 - .xlsx 格式已移除支援，請改用 .csv（Excel 可直接開啟）
 - workspace/profiles/ 資料夾內僅允許一份設定檔
 - modetype 僅允許 1（手續費）或 2（月租費）
