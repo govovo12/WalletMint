@@ -1,0 +1,4 @@
+[
+  {"name": "小明", "password": "Pass@123", "email": "xm@example.com", "modetype": 1},
+  {"name": "小華", "password": "Abc@456", "email": "xh@example.com", "modetype": 2}
+]

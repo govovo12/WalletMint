@@ -1,0 +1,48 @@
+# === Python 通用 ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.log
+*.sqlite3
+
+# === VSCode & 系統暫存 ===
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# === 虛擬環境 ===
+venv/
+env/
+ENV/
+.venv/
+.env.bak
+
+# === 測試暫存 ===
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.cache/
+
+# === 臨時輸出 ===
+*.tmp
+*.bak
+*.swp
+
+# Profiles 只保留範例說明，不上傳客戶資料
+workspace/profiles/names.csv
+workspace/profiles/names.env
+workspace/profiles/names.json
+
+# 若將來自動產出 log 或 report，可加這些
+logs/
+reports/
+
+# === PyInstaller 打包輸出（若有用） ===
+build/
+dist/
+*.spec
