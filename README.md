@@ -4,21 +4,31 @@
 同時驗證所有設定檔內容、API 流程與錯誤碼回傳。
 所有模組皆可獨立執行與測試，並支援 CLI 參數控制除錯輸出。
 
----
+------------------------------------------------------------
+
 ⚡ 快速開始（Quick Start）
-# 1️⃣ 切換到專案目錄
+
+1️⃣ 切換到專案目錄：
 cd WalletMint
 
-# 2️⃣ 建立虛擬環境（Windows）
+2️⃣ 建立虛擬環境（Windows）：
 python -m venv venv
 
-# 3️⃣ 啟用虛擬環境
+3️⃣ 啟用虛擬環境：
 venv\Scripts\activate
 
-# 4️⃣ 安裝套件依賴
+4️⃣ 安裝套件依賴：
 pip install -r requirements.txt
 
-## 📦 專案流程概觀
+完成後即可執行主控制器：
+python main.py controller main --debug
+
+若要關閉除錯輸出：
+python main.py controller main --no-debug
+
+------------------------------------------------------------
+
+📦 專案流程概觀
 
 1. 讀取系統設定（.env）
 2. 讀取名稱設定檔（.csv / .env / .json）
@@ -26,96 +36,69 @@ pip install -r requirements.txt
 4. 呼叫 OPS 控制器執行批次新增與查詢作業
 5. 任務模組回傳非 SUCCESS (ResultCode != 0) 時會立即中止流程。
 
-📘 設定檔說明：
+設定檔說明：
 workspace/profiles/examples/profile_spec.yml
 
----
+------------------------------------------------------------
 
-## ⚙️ CLI 使用方式
+⚙️ CLI 使用方式
 
-🏁 入口檔：
+入口檔：
 python main.py
 
-📘 指令語法：
+指令語法：
 python main.py <類別> <名稱> [選項]
 
-| 類別 | 功能說明 |
-|------|-----------|
-| controller | 執行主要控制器（例如 main） |
-| task | 單獨執行任務模組 |
-| tool | 單獨執行工具模組 |
-| list | 顯示可執行項目列表 |
+類別：
+controller － 執行主要控制器（例如 main）
+task － 單獨執行任務模組
+tool － 單獨執行工具模組
+list － 顯示可執行項目列表
 
----
+------------------------------------------------------------
 
-🚀 常用指令：
+🧩 錯誤碼比對方式
 
-執行完整主流程（Loader + OPS）：
-python main.py controller main --debug
-
-關閉除錯模式：
-python main.py controller main --no-debug
-
-參數說明：
-- --debug：開啟除錯模式（印出完整 context 與 API 回傳）。
-- --no-debug：關閉除錯，只顯示主要步驟與錯誤訊息。
-- --step n：僅執行到指定步驟（1 = Loader, 2 = OPS 全流程）。
-
-範例：
-python main.py controller main --step 1
-
-⚠️ 若執行時出現設定錯誤或格式錯誤的錯誤碼，
-請參考 workspace/profiles/examples/profile_spec.yml
-以確認欄位規範與值的限制。
-
----
-
-## 🧩 錯誤碼比對方式
-
-📂 錯誤碼定義於：
+錯誤碼定義於：
 workspace/config/error_code.py
 
 執行時若顯示：
 ❌ 任務失敗 ResultCode = 2031
 
-請開啟 error_code.py 搜尋代碼：
+請開啟 error_code.py 搜尋：
 task_email_invalid_format = 2031  # 信箱格式錯誤
 
 若錯誤與設定檔內容或欄位格式有關，
-請同時參考 workspace/profiles/examples/profile_spec.yml。
+請同時參考：
+workspace/profiles/examples/profile_spec.yml
 
----
+------------------------------------------------------------
 
-## 🧠 偵錯與除錯建議
+🧠 偵錯與除錯建議
 
-| 情境 | 建議操作 |
-|------|-----------|
-| 想看完整流程輸出 | 使用 --debug |
-| 只想驗證設定檔格式 | 使用 --step 1 |
-| 執行時出現錯誤碼 | 到 workspace/config/error_code.py 搜尋代碼 |
-| 設定檔欄位錯誤或格式異常 | 參考 workspace/profiles/examples/profile_spec.yml |
+想看完整流程輸出：使用 --debug
+只想驗證設定檔格式：使用 --step 1
+執行時出現錯誤碼：到 workspace/config/error_code.py 搜尋代碼
+設定檔欄位錯誤或格式異常：參考 workspace/profiles/examples/profile_spec.yml
 
----
+------------------------------------------------------------
 
-## 🧪 測試內容
+🧪 測試內容
 
-▶️ 測試指令：
+測試指令：
 pytest -m "unit and tool and loader" -v
 pytest -m "unit and task and loader" -v
 
 測試覆蓋範圍：
-| 層級 | 測試內容 |
-|------|-----------|
-| 工具層 (loader.py) | 驗證 .env / .csv / .json、錯誤格式與權限處理 |
-| 任務層 | load_system_context_task、load_profile_context_task、assemble_context_task |
-| 整合測試 | 驗證三任務串接產生完整 Context |
-| 錯誤碼覆蓋 | 所有任務錯誤碼皆有對應測試案例 ✅ |
+工具層 (loader.py)：驗證 .env / .csv / .json、錯誤格式與權限處理
+任務層：load_system_context_task、load_profile_context_task、assemble_context_task
+整合測試：驗證三任務串接產生完整 Context
+錯誤碼覆蓋：所有任務錯誤碼皆有對應測試案例 ✅
+覆蓋率：100% 錯誤碼命中率
 
-📈 覆蓋率：100% 錯誤碼命中率
+------------------------------------------------------------
 
----
-
-## 🧱 專案結構
+🧱 專案結構
 
 workspace/
  ├─ tools/loader/
@@ -131,24 +114,24 @@ workspace/
  │   ├─ error_code.py
  │   └─ paths.py
  └─ profiles/
-     ├─ names.csv                # 客戶實際使用（僅允許一份）
+     ├─ names.csv                （客戶實際使用，僅允許一份）
      └─ examples/
          ├─ names_example.csv
          ├─ names_example.env
          ├─ names_example.json
-         └─ profile_spec.yml     # ⚠️ 設定檔規範說明文件
+         └─ profile_spec.yml     （設定檔規範說明文件）
 
----
+------------------------------------------------------------
 
-## ⚠️ 注意事項
+⚠️ 注意事項
 
-- .xlsx 格式已移除支援，請改用 .csv（Excel 可直接開啟）。
-- workspace/profiles/ 資料夾內僅允許一份設定檔。
-- modetype 僅允許 1（手續費）或 2（月租費）。
-- 若新增任務模組或錯誤碼，請同步更新 error_code.py 與測試檔。
-- 若修改設定檔欄位或規範，請同步更新 profile_spec.yml。
+- .xlsx 格式已移除支援，請改用 .csv（Excel 可直接開啟）
+- workspace/profiles/ 資料夾內僅允許一份設定檔
+- modetype 僅允許 1（手續費）或 2（月租費）
+- 若新增任務模組或錯誤碼，請同步更新 error_code.py 與測試檔
+- 若修改設定檔欄位或規範，請同步更新 profile_spec.yml
 
----
+------------------------------------------------------------
 
-📄 版權宣告：
+📄 版權宣告
 © 2025 WalletMint Automation Framework
