@@ -27,7 +27,7 @@ python main.py controller main --debug
 python main.py controller main --no-debug
 ```
 
-📦 專案流程概觀
+## 📦 專案流程概觀
 ```bash
 1. 讀取系統設定（.env）
 2. 讀取名稱設定檔（.csv / .env / .json）
@@ -36,12 +36,12 @@ python main.py controller main --no-debug
 5. 任務模組回傳非 SUCCESS (ResultCode != 0) 時會立即中止流程。
 ```
 
-設定檔說明
+## 🧱 設定檔說明
 ```bash
 workspace/profiles/examples/profile_spec.yml
 ```
 
-🧩 錯誤碼比對方式
+## 🧩 錯誤碼比對方式
 ```bash
 錯誤碼定義於：
 workspace/config/error_code.py
@@ -57,7 +57,7 @@ task_email_invalid_format = 2031  # 信箱格式錯誤
 workspace/profiles/examples/profile_spec.yml
 ```
 
-🧠 偵錯與除錯建議
+## 🧠 偵錯與除錯建議
 ```bash
 想看完整流程輸出：使用 --debug
 只想驗證設定檔格式：使用 --step 1
@@ -65,7 +65,7 @@ workspace/profiles/examples/profile_spec.yml
 設定檔欄位錯誤或格式異常：參考 workspace/profiles/examples/profile_spec.yml
 ```
 
-🧪 測試內容
+## 🧪 測試內容
 ```bash
 測試指令：
 pytest -m "unit and tool and loader" -v
@@ -79,7 +79,7 @@ pytest -m "unit and task and loader" -v
 覆蓋率：100% 錯誤碼命中率
 ```
 
-🧱 專案結構
+## 🧱 專案結構
 ```bash
 workspace/
  ├─ tools/loader/
@@ -103,7 +103,8 @@ workspace/
          └─ profile_spec.yml     （設定檔規範說明文件）
 ```
 
-⚠️ 注意事項
+## ⚠️ 注意事項
+
 ```bash
 - .xlsx 格式已移除支援，請改用 .csv（Excel 可直接開啟）
 - workspace/profiles/ 資料夾內僅允許一份設定檔
@@ -112,5 +113,5 @@ workspace/
 - 若修改設定檔欄位或規範，請同步更新 profile_spec.yml
 ```
 
-📄 版權宣告
+## 📄 版權宣告
 © 2025 WalletMint Automation Framework
