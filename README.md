@@ -27,7 +27,6 @@ python main.py controller main --debug
 python main.py controller main --no-debug
 ```
 
-
 📦 專案流程概觀
 ```bash
 1. 讀取系統設定（.env）
@@ -37,12 +36,10 @@ python main.py controller main --no-debug
 5. 任務模組回傳非 SUCCESS (ResultCode != 0) 時會立即中止流程。
 ```
 
-
 設定檔說明
 ```bash
 workspace/profiles/examples/profile_spec.yml
 ```
-
 
 🧩 錯誤碼比對方式
 ```bash
@@ -60,15 +57,16 @@ task_email_invalid_format = 2031  # 信箱格式錯誤
 workspace/profiles/examples/profile_spec.yml
 ```
 
-
 🧠 偵錯與除錯建議
 ```bash
 想看完整流程輸出：使用 --debug
 只想驗證設定檔格式：使用 --step 1
 執行時出現錯誤碼：到 workspace/config/error_code.py 搜尋代碼
 設定檔欄位錯誤或格式異常：參考 workspace/profiles/examples/profile_spec.yml
-🧪 測試內容
+```
 
+🧪 測試內容
+```bash
 測試指令：
 pytest -m "unit and tool and loader" -v
 pytest -m "unit and task and loader" -v
@@ -80,7 +78,6 @@ pytest -m "unit and task and loader" -v
 錯誤碼覆蓋：所有任務錯誤碼皆有對應測試案例 ✅
 覆蓋率：100% 錯誤碼命中率
 ```
-
 
 🧱 專案結構
 ```bash
@@ -105,7 +102,6 @@ workspace/
          ├─ names_example.json
          └─ profile_spec.yml     （設定檔規範說明文件）
 ```
-
 
 ⚠️ 注意事項
 ```bash
