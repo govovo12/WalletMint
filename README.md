@@ -26,6 +26,8 @@ python main.py controller main --debug
 # ❌ 關閉除錯輸出
 python main.py controller main --no-debug
 ```
+
+```bash
 📦 專案流程概觀
 
 
@@ -34,7 +36,9 @@ python main.py controller main --no-debug
 3. 組合 Context（COMMON + INDEX + API）
 4. 呼叫 OPS 控制器執行批次新增與查詢作業
 5. 任務模組回傳非 SUCCESS (ResultCode != 0) 時會立即中止流程。
+```
 
+```bash
 設定檔說明：
 workspace/profiles/examples/profile_spec.yml
 🧩 錯誤碼比對方式
@@ -52,6 +56,9 @@ task_email_invalid_format = 2031  # 信箱格式錯誤
 若錯誤與設定檔內容或欄位格式有關，
 請同時參考：
 workspace/profiles/examples/profile_spec.yml
+```
+
+```bash
 🧠 偵錯與除錯建議
 
 想看完整流程輸出：使用 --debug
@@ -70,6 +77,9 @@ pytest -m "unit and task and loader" -v
 整合測試：驗證三任務串接產生完整 Context
 錯誤碼覆蓋：所有任務錯誤碼皆有對應測試案例 ✅
 覆蓋率：100% 錯誤碼命中率
+```
+
+```bash
 🧱 專案結構
 
 workspace/
@@ -92,6 +102,9 @@ workspace/
          ├─ names_example.env
          ├─ names_example.json
          └─ profile_spec.yml     （設定檔規範說明文件）
+```
+
+```bash
 ⚠️ 注意事項
 
 - .xlsx 格式已移除支援，請改用 .csv（Excel 可直接開啟）
@@ -99,5 +112,7 @@ workspace/
 - modetype 僅允許 1（手續費）或 2（月租費）
 - 若新增任務模組或錯誤碼，請同步更新 error_code.py 與測試檔
 - 若修改設定檔欄位或規範，請同步更新 profile_spec.yml
+```
+
 📄 版權宣告
 © 2025 WalletMint Automation Framework
