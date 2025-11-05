@@ -6,6 +6,7 @@
 
 ------------------------------------------------------------
 
+```text
 ⚡ 快速開始（Quick Start）
 
 1️⃣ 切換到專案目錄：
@@ -26,8 +27,10 @@ python main.py controller main --debug
 若要關閉除錯輸出：
 python main.py controller main --no-debug
 
+```
 ------------------------------------------------------------
 
+```text
 📦 專案流程概觀
 
 1. 讀取系統設定（.env）
@@ -54,11 +57,13 @@ controller － 執行主要控制器（例如 main）
 task － 單獨執行任務模組
 tool － 單獨執行工具模組
 list － 顯示可執行項目列表
+```
 
 ------------------------------------------------------------
 
-🧩 錯誤碼比對方式
+## 🧩 錯誤碼比對方式
 
+```text
 錯誤碼定義於：
 workspace/config/error_code.py
 
@@ -72,22 +77,28 @@ task_email_invalid_format = 2031  # 信箱格式錯誤
 請同時參考：
 workspace/profiles/examples/profile_spec.yml
 
-------------------------------------------------------------
+```  
+
+```text
 
 🧠 偵錯與除錯建議
-
 想看完整流程輸出：使用 --debug
 只想驗證設定檔格式：使用 --step 1
 執行時出現錯誤碼：到 workspace/config/error_code.py 搜尋代碼
 設定檔欄位錯誤或格式異常：參考 workspace/profiles/examples/profile_spec.yml
 
-------------------------------------------------------------
+```
+
+```text
 
 🧪 測試內容
-
 測試指令：
 pytest -m "unit and tool and loader" -v
 pytest -m "unit and task and loader" -v
+
+```
+
+```text
 
 測試覆蓋範圍：
 工具層 (loader.py)：驗證 .env / .csv / .json、錯誤格式與權限處理
@@ -96,10 +107,11 @@ pytest -m "unit and task and loader" -v
 錯誤碼覆蓋：所有任務錯誤碼皆有對應測試案例 ✅
 覆蓋率：100% 錯誤碼命中率
 
+```
 ------------------------------------------------------------
-
-## 🧱 專案結構
 ```text
+
+🧱 專案結構
 workspace/
  ├─ tools/loader/
  │   └─ loader.py
@@ -121,18 +133,23 @@ workspace/
          ├─ names_example.json
          └─ profile_spec.yml     （設定檔規範說明文件）
 
+```
 
-------------------------------------------------------------
+```text
 
 ⚠️ 注意事項
 
-- .xlsx 格式已移除支援，請改用 .csv（Excel 可直接開啟）
-- workspace/profiles/ 資料夾內僅允許一份設定檔
-- modetype 僅允許 1（手續費）或 2（月租費）
-- 若新增任務模組或錯誤碼，請同步更新 error_code.py 與測試檔
-- 若修改設定檔欄位或規範，請同步更新 profile_spec.yml
+.xlsx 格式已移除支援，請改用 .csv（Excel 可直接開啟）
 
-------------------------------------------------------------
+workspace/profiles/ 資料夾內僅允許一份設定檔
+
+modetype 僅允許 1（手續費）或 2（月租費）
+
+若新增任務模組或錯誤碼，請同步更新 error_code.py 與測試檔
+
+若修改設定檔欄位或規範，請同步更新 profile_spec.yml
 
 📄 版權宣告
 © 2025 WalletMint Automation Framework
+
+```
